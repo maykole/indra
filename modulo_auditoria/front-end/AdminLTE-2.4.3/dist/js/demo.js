@@ -14,7 +14,11 @@ $(function () {
    var anio="2019";
 	var listadoProcesos=[];
 	 $(document).ready(function() {
-		 
+
+		var date = new Date();
+	
+		$('#textFecCre').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
+
 		 $.ajax({
 			 type:"GET",
 			 url: "http://"+ip+":84/Auditoria/initMenu",
