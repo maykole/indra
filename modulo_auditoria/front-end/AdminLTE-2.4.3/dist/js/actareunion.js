@@ -68,38 +68,59 @@ $(function () {
         })
           
           $('#popupGenerar').click(function(){
-              
-              if($('#textProceso').val().length==0){
-                      alert('Debe seleccionar algún proceso.');
-                      return false;
+              debugger;
+              if($('#listaAsistente tbody tr').length==0){
+                    alert('Debe seleccionar algún Asistente.');
+                    return false;
               }
+
+              if($('#listaProceso tbody tr').length==0){
+                    alert('Debe seleccionar algún Proceso.');
+                    return false;
+                }   
               
+                var asistenteobj=[];
+                $.each($('#listaAsistente tbody tr'),function (index,item) {
+                    var objtemp={
+                        "empleadoId": $(item).find('td')[0].id,
+                        "nombres": $($(item).find('td')[0]).text(),
+                        "cargo": ""
+                    }
+                    asistenteobj.push(objtemp);
+                }) 
+
+                var procesoobj=[];
+                $.each($('#listaProceso tbody tr'),function (index,item) {
+                    var objtemp={
+                        "procesoId": $(item).find('td')[0].id,
+                        "nombred": $($(item).find('td')[0]).text(),
+                    }
+                    procesoobj.push(objtemp);
+                }) 
+
               var tempObj={
-                "id": 0,
-                "asunto": $('#textAsunto').html(),
-                "prioridad": $('#textPrioridad').val(),
-                "estadoid": 0,
-                "estado": $('#textEstado').val(),
-                "fecharegistro": $('#textFecCre').val(),
-                "motivo": $('#textMotivo').html(),
-                "proceso": $('#textProceso').val(),
-                "solicitante": $('#textSolicitante').val()               
-              }
+                "titulo":$('#textAsunto').val(),
+                "descripcion":$('#textMotivo').val(),
+                "lugar":$('#textLugar').val(),
+                "conclusiones":$('#textConclusion').html(),
+                "acuerdos":$('#textAcuerdo').html(),
+                "asistentes": asistenteobj,
+                "procesos": procesoobj
+            }
 
               
               
               var jsontext=JSON.stringify(tempObj);
               $.ajax({
                        type:"POST",
-                       url: "http://"+ip+":84/Auditoria/solicitudregistro",
+                       url: "http://"+ip+":84/Auditoria/actareunion",
                        dataType: "json",
                        contentType: "application/json; charset=utf-8",
                        data: jsontext,
                        success: function(xvr){
-                           debugger;
-                           var cadena2="";
-                           var temobj=[];
                            
+                           alert('Se registro el Acta de Reunión satisfactoriamente (id: '+xvr.id+').');
+                           location.reload()
                            
                        },
                        error: function(err){
