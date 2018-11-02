@@ -17,21 +17,24 @@ $(function () {
   
           var date = new Date();
       
-          $('#textFecCre').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
+          $('#textfecev').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
   
            $.ajax({
                type:"GET",
-               url: "http://"+ip+":84/Auditoria/solicitudregistro/init",
+               url: "http://"+ip+":84/Auditoria/solicitudregistro/9",
                dataType: "json",
                success: function(xvr){
                    
-                   var opt = "";
+                    var opt = "";
                    $('#textSolicitante').val(xvr.solicitante.nombres);
                    $('#textIdSolic').val(xvr.solicitante.empleadoId);
-                  $.each(xvr.procesos,function (index,item) {
-                    opt = opt + '<option value="'+item.procesoId+'">' + item.nombre + '</option>';
-                  })
-                  $('#textProceso').html(opt);
+                 
+                  $('#textProceso').val(xvr.proceso.nombre);
+                  $('#textPrioridad').val(xvr.prioridad);
+                  $('#textAsunto').val(xvr.asunto);
+                  //$('#textMotivo').val(xvr.prioridad);
+                  $('#textEstado').val(xvr.estado);
+                  $('#textFecCre').val(xvr.fecharegistro);
                },
                error: function(){
                    

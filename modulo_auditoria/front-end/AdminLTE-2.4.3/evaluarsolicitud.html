@@ -193,6 +193,7 @@
               <i class="fa fa-dashboard"></i> <span>Acta de Reunión</span>
             </a>
           </li>
+
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -206,7 +207,7 @@
       <section class="content">
         <form>
           <div class="row text-center row-spacing">
-            <h3>ACTA DE REUNIÓN</h3>
+            <h3>EVALUAR SOLICITUD</h3>
           </div>
           <br />
           <div class="row row-spacing">
@@ -215,76 +216,67 @@
                 <label> Solicitante: </label>
               </div>
               <div class="col-sm-7">
-                <input type="text" class="form-control" id="textSolicitante" value="Eduardo Bonilla" disabled>
+                <input type="text" class="form-control" id="textSolicitante"   disabled>
+                <input type="hidden" id="textIdSolic">
               </div>
             </div>
-            <div class="col-sm-6">
-                <div class="col-sm-5">
-                  <label>Estado: </label>
-                </div>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control" id="textEstado" value="Solicitud" disabled>
-                </div>
-              </div>
+            
 
           </div>
 
-        
+          <div class="row row-spacing">
+              <div class="col-sm-6">
+                <div class="col-sm-5">
+                  <label>Proceso: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" id="textProceso" class="form-control" disabled />
+                  
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="col-sm-5">
+                  <label>Prioridad: </label>
+                </div>
+                <div class="col-sm-7">
+                    <input type="text" id="textPrioridad" class="form-control" disabled />
+                        
+                </div>
+              </div>
+            </div>
+
           <div class="row row-spacing">
             <div class="col-sm-6">
               <div class="col-sm-5">
                 <label> Asunto: </label>
               </div>
               <div class="col-sm-7">
-                <textarea rows="3" class="form-control" id="textAsunto">
+                <textarea rows="5" class="form-control" id="textAsunto" disabled>
 
                     </textarea>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="col-sm-5">
-                <label> Descripción: </label>
+                <label> Motivo: </label>
               </div>
               <div class="col-sm-7">
-                <textarea rows="3" class="form-control" id="textMotivo">
+                <textarea rows="5" class="form-control" id="textMotivo" disabled>
 
                     </textarea>
               </div>
             </div>
           </div>
           <div class="row row-spacing">
-              <div class="col-sm-6">
-                <div class="col-sm-5">
-                  <label> Acuerdos: </label>
-                </div>
-                <div class="col-sm-7">
-                  <textarea rows="5" class="form-control" id="textAcuerdo">
-  
-                      </textarea>
-                </div>
+            
+            <div class="col-sm-6">
+              <div class="col-sm-5">
+                <label>Estado: </label>
               </div>
-              <div class="col-sm-6">
-                <div class="col-sm-5">
-                  <label> Conclusiones: </label>
-                </div>
-                <div class="col-sm-7">
-                  <textarea rows="5" class="form-control" id="textConclusion">
-  
-                      </textarea>
-                </div>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="textEstado" value="Solicitud" disabled>
               </div>
             </div>
-
-          <div class="row row-spacing">
-            
-              <div class="col-sm-6">
-                  <div class="col-sm-5">
-                    <label>Lugar: </label>
-                  </div>
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" id="textLugar" >
-                  </div>
-                </div>
             <div class="col-sm-6">
                 <div class="col-sm-5">
                   <label>Fecha de creación: </label>
@@ -294,57 +286,27 @@
                 </div>
               </div>
           </div>
-
           <div class="row row-spacing">
-            
-              <div class="col-sm-6">
-                  <div class="col-sm-5">
-                    <label>Asistentes: </label>
-                  </div>
-                  <div class="col-sm-7">
-                      <input list="browsers" id="asistenteid" class="form-control" style="width: 85%; display: inline;" name="browser">
-                      <datalist id="browsers">
-                          
-                        </datalist>
-                        <input type="button" id="addAsistente" class="btn" style="text-align:right; float: right;" value="+"/>
-                        <br /><br />
-                        <table id="listaAsistente" class="display table table-striped table-bordered" style="width:100%">
-                            <thead>
-                              <tr style="background: #c5c5c5;">
-                                <th>Asistente</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                          </table>
-                  </div>
-                </div>
             <div class="col-sm-6">
-                <div class="col-sm-5">
-                  <label>Procesos: </label>
-                </div>
-                <div class="col-sm-7">
-                    <input list="procesos" id="procesoid" class="form-control" style="width: 85%; display: inline;" name="browser">
-                    <datalist id="procesos">
-                        
-                      </datalist>
-                      <input type="button" id="addProceso" style="text-align:right; float: right;margin-top: 3px;" value="+"/>
-                      <br /><br />
-                        <table id="listaProceso" class="display table table-striped table-bordered" style="width:100%">
-                            <thead>
-                              <tr style="background: #c5c5c5;">
-                                <th>Proceso</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                          </table>
-                </div>
+              <div class="col-sm-5">
+                <label> Comentario: </label>
               </div>
+              <div class="col-sm-7">
+                <textarea rows="3" class="form-control" id="textComentario" >
+
+                    </textarea>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="col-sm-5">
+                <label> Fecha Evaluación: </label>
+              </div>
+              <div class="col-sm-7">
+                  <input type="text" class="form-control" id="textfecev" disabled>
+           
+              </div>
+            </div>
           </div>
-          
           <br />
           <br />
          
@@ -352,8 +314,11 @@
         <br />
         <div class="row">
           <span class="generar"></span><button id="popupGenerar" style="padding: 10px;" class="btn btn-success"
-            data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="Guardar">Guardar</button>
+            data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="Aprobar">Aprobar</button>
+            &nbsp;&nbsp;<button id="btnrechazar" style="padding: 10px;" class="btn btn-danger"
+            data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="Rechazar">Rechazar</button>
         </div>
+        <br />
       </section>
       <!-- /.content -->
 
@@ -610,7 +575,7 @@
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/actareunion.js"></script>
+  <script src="dist/js/evaluarsolicitud.js"></script>
 </body>
 
 </html>
