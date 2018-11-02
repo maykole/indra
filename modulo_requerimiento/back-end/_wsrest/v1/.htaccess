@@ -1,0 +1,33 @@
+RewriteEngine on  
+#
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-l 
+# 
+#RewriteRule ^indra/(.+)$ api_indra.php?url=$1 [QSA,NC,L]
+
+#{estimacion} / {id} / {fecha}
+RewriteRule ^indra/requerimiento/([a-zA-Z_-]*)/([0-9]+)/(.+)$ api_indra_estimacion.php?url=$1/$2/$3 [QSA,NC,L]
+
+#{indicador} / {funcion} / {id} 
+RewriteRule ^indra/requerimiento/indicador/([a-zA-Z_-]*)$ api_indra_indicador.php?url=$1 [QSA,NC,L]
+#{indicador} / {funcion} / {id} / {id} / {id} / {fecha}
+RewriteRule ^indra/requerimiento/indicador/([a-zA-Z_-]*)/(.+)/([0-9]+)/([0-9]+)/(.+)$ api_indra_indicador.php?url=$1/$2/$3/$4/$5 [QSA,NC,L]
+
+#{proyecto} / {funcion} / {id} / {id} / {string} / {fecha} 
+RewriteRule ^indra/requerimiento/proyecto/([a-zA-Z_-]*)/([0-9]+)/([0-9]+)/([a-zA-Z_-]*)/(.+)$ api_indra_proyecto.php?url=$1/$2/$3/$4/$5 [QSA,NC,L]
+
+#{reporte} / {funcion}  
+RewriteRule ^indra/requerimiento/reporte/([a-zA-Z_-]*)$ api_indra_reporte.php?url=$1 [QSA,NC,L]
+#{reporte} / {funcion} / {id} / {id}
+RewriteRule ^indra/requerimiento/reporte/([a-zA-Z_-]*)/([0-9]+)/([0-9]+)$ api_indra_reporte.php?url=$1/$2/$3 [QSA,NC,L]
+
+#{rol} / {funcion} 
+RewriteRule ^indra/requerimiento/rol/([a-zA-Z_-]*)$ api_indra_rol.php?url=$1 [QSA,NC,L]
+#{rol} / {funcion} / {id} 
+RewriteRule ^indra/requerimiento/rol/([a-zA-Z_-]*)/([0-9]+)$ api_indra_rol.php?url=$1/$2 [QSA,NC,L]
+
+#{rq} / {funcion} / {id} 
+RewriteRule ^indra/requerimiento/rq/([a-zA-Z_-]*)/([0-9]+)$ api_indra_rq.php?url=$1/$2 [QSA,NC,L]
+#{rq} / {funcion} / {id} / {string} / {string} 
+RewriteRule ^indra/requerimiento/rq/([a-zA-Z_-]*)/([0-9]+)/([a-zA-Z_-]*)/([a-zA-Z_-]*)$ api_indra_rq.php?url=$1/$2/$3/$4 [QSA,NC,L]
