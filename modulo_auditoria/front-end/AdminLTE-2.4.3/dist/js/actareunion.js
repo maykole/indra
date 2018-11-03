@@ -37,8 +37,12 @@ $(function () {
                   })
                   $('#procesos').html(optpro);
                },
-               error: function(){
-                   
+               error: function(err){
+                var codig=JSON.parse(err.responseText)
+                if(codig.error.mensaje){
+                    alert(codig.error.mensaje);
+                    window.history.back();
+                }
                }
            })
           
@@ -124,7 +128,11 @@ $(function () {
                            
                        },
                        error: function(err){
-                           alert(err)
+                            var codig=JSON.parse(err.responseText)
+                            if(codig.error.mensaje){
+                                alert(codig.error.mensaje);
+                                //window.history.back();
+                            }
                            
                        }
                    })

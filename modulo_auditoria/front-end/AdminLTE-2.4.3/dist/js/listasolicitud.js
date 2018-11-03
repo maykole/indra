@@ -21,17 +21,17 @@ $(function () {
   
            $.ajax({
                type:"GET",
-               url: "http://"+ip+":84/Auditoria/solicitudregistro/init",
+               url: "http://"+ip+":84/Auditoria/solicitudregistro/",
                dataType: "json",
                success: function(xvr){
                    
-                   var opt = "";
-                   $('#textSolicitante').val(xvr.solicitante.nombres);
-                   $('#textIdSolic').val(xvr.solicitante.empleadoId);
-                  $.each(xvr.procesos,function (index,item) {
-                    opt = opt + '<option value="'+item.procesoId+'">' + item.nombre + '</option>';
+                  
+                   var tdtd="";
+                  $.each(xvr,function (index,item) {
+                    tdtd= tdtd + '<tr><td>' + item.asunto + '</td><td>' + item.estado + '</td><td>' + item.fecharegistro + '</td><td></td></tr>';
                   })
-                  $('#textProceso').html(opt);
+                  tdtd=tdtd+"";
+                  $('#listasolicitud tbody').html(tdtd);
                },
                error: function(){
                    

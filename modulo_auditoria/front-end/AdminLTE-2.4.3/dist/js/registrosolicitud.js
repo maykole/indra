@@ -10,6 +10,7 @@ $(function () {
     /**
      * Get access to plugins
      */
+    var obinicial;
     var ip="localhost";
      var anio="2019";
       var listadoProcesos=[];
@@ -24,7 +25,7 @@ $(function () {
                url: "http://"+ip+":84/Auditoria/solicitudregistro/init",
                dataType: "json",
                success: function(xvr){
-                   
+                obinicial=xvr;
                    var opt = "";
                    $('#textSolicitante').val(xvr.solicitante.nombres);
                    $('#textIdSolic').val(xvr.solicitante.empleadoId);
@@ -33,8 +34,12 @@ $(function () {
                   })
                   $('#textProceso').html(opt);
                },
-               error: function(){
-                   
+               error: function(xvr){
+                   var codig=JSON.parse(xvr.responseText)
+                    if(codig.error.mensaje){
+                        alert(codig.error.mensaje);
+                        window.history.back();
+                    }
                }
            })
           
@@ -61,6 +66,8 @@ $(function () {
               }
 
               tempObj = {
+                  "periodo":anio,
+                  "motivo":$('#textMotivo').html(),
                     "asunto": $('#textAsunto').html(),
                     "prioridad": $('#textPrioridad').val(),
                     "proceso": {
@@ -68,7 +75,8 @@ $(function () {
                     },
                     "solicitante":{
                         "empleadoId": $('#textIdSolic').val()
-                    }
+                    },
+                    "actareunion":obinicial.actareunion
                 }
               
               var jsontext=JSON.stringify(tempObj);
