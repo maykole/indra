@@ -1,30 +1,63 @@
-package portafolio.bean;
-
-import java.util.Date;
+/**
+ *Esta clase crea instancias de la clase Proyecto.
+ * @author Jonathan Tuñon Levano.
+ * @version 1.50, 30/10/2018
+ * @since 1.4
+ */
+ 
+package portafolio.bean;//Nombre del paquete en el que se encuentra la clase.
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**Cuando una clase de nivel superior o un tipo de 
+ * enumeración se anota con la anotación @XmlRootElement,
+ *  su valor se representa como elemento XML en un documento XML.
+ */
 @XmlRootElement
 public class ProyectoBean {
+	
 
+	//Variables
+	private 	int 	  co_proyecto	; 			//Codigo del proyecto.
+	private 	String	  no_proyecto	; 			//Nombre del Proyecto.
+	private 	String	  de_proyecto	; 			//Descripcción del Proyecto.
+	private 	String	  fe_inicio	;     			//Fecha de inicio del proyecto.
+	private 	String	  fe_termino	;     			//Fecha de termino del proyecto.
+	private 	int 	  co_programa	; 			//Codigo del programa.
+	private 	int 	  co_estado	;     			//Codigo de estado del proyecto.
+	private 	int 	  co_usuarioregistro	;	//Codigo del usuario de registro.
+	private 	int 	  co_prioridad	;			//Codigo de la prioridad.
+	private 	int 	  co_categoria	;			//Codigo de la categoria.
+	private 	double 	  po_avance	;			//porcentaje de avance.
+	private 	int 	  co_rubro	;			//Codigo de la categoria.
+	private 	int 	  co_cliente	;			//Codigo del cliente.
+	
+	//Constructor
 	public ProyectoBean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public ProyectoBean(int co_proyecto, String no_proyecto, String fe_inicio,
-			String fe_fin, int co_programa, int co_estado,
-			int co_usuarioregistro, int co_prioridad, int co_categoria) {
-		super();
-		this.co_proyecto = co_proyecto;
-		this.no_proyecto = no_proyecto;
-		this.fe_inicio = fe_inicio;
-		this.fe_fin = fe_fin;
-		this.co_programa = co_programa;
-		this.co_estado = co_estado;
-		this.co_usuarioregistro = co_usuarioregistro;
-		this.co_prioridad = co_prioridad;
-		this.co_categoria = co_categoria;
+	
+	//Constructor definido
+	public ProyectoBean(int co_proyecto, String no_proyecto,String de_proyecto, String fe_inicio,
+			String fe_termino, int co_programa, int co_estado, int co_cliente,
+			int co_usuarioregistro, int co_prioridad, int co_categoria,double po_avance, int co_rubro) 
+	{
+			super();
+			this.co_proyecto = co_proyecto;
+			this.no_proyecto = no_proyecto;
+			this.fe_inicio = fe_inicio;
+			this.fe_termino = fe_termino;
+			this.co_programa = co_programa;
+			this.co_estado = co_estado;
+			this.co_usuarioregistro = co_usuarioregistro;
+			this.co_prioridad = co_prioridad;
+			this.co_categoria = co_categoria;
+			this.po_avance = po_avance;
+			this.co_rubro = co_rubro;
+			this.co_cliente = co_cliente;
 	}
+	
+	//Get and set 
 	public int getCo_proyecto() {
 		return co_proyecto;
 	}
@@ -37,18 +70,27 @@ public class ProyectoBean {
 	public void setNo_proyecto(String no_proyecto) {
 		this.no_proyecto = no_proyecto;
 	}
+	public String getDe_proyecto() {
+		return de_proyecto;
+	}
+	public void setDe_proyecto(String de_proyecto) {
+		this.de_proyecto = de_proyecto;
+	}
 	public String getFe_inicio() {
 		return fe_inicio;
 	}
 	public void setFe_inicio(String fe_inicio) {
 		this.fe_inicio = fe_inicio;
 	}
-	public String getFe_fin() {
-		return fe_fin;
+	
+	public String getFe_termino() {
+		return fe_termino;
 	}
-	public void setFe_fin(String fe_fin) {
-		this.fe_fin = fe_fin;
+
+	public void setFe_termino(String fe_termino) {
+		this.fe_termino = fe_termino;
 	}
+
 	public int getCo_programa() {
 		return co_programa;
 	}
@@ -79,52 +121,23 @@ public class ProyectoBean {
 	public void setCo_categoria(int co_categoria) {
 		this.co_categoria = co_categoria;
 	}
-	public String getNo_programa() {
-		return no_programa;
+	public double getPo_avance() {
+		return po_avance;
 	}
-	public void setNo_programa(String no_programa) {
-		this.no_programa = no_programa;
+	public void setPo_avance(double po_avance) {
+		this.po_avance = po_avance;
 	}
-	public String getNo_estado() {
-		return no_estado;
+	public int getCo_rubro() {
+		return co_rubro;
 	}
-	public void setNo_estado(String no_estado) {
-		this.no_estado = no_estado;
+	public void setCo_rubro(int co_rubro) {
+		this.co_rubro = co_rubro;
 	}
-	public String getNombre() {
-		return nombre;
+	public int getCo_cliente() {
+		return co_cliente;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setCo_cliente(int co_cliente) {
+		this.co_cliente = co_cliente;
 	}
-	public String getNo_prioridadl() {
-		return no_prioridadl;
-	}
-	public void setNo_prioridadl(String no_prioridadl) {
-		this.no_prioridadl = no_prioridadl;
-	}
-	public String getNo_categoria() {
-		return no_categoria;
-	}
-	public void setNo_categoria(String no_categoria) {
-		this.no_categoria = no_categoria;
-	}
-	private 	int 	  co_proyecto	;
-	private 	String	  no_proyecto	;
-	private 	String	  fe_inicio	;
-	private 	String	  fe_fin	;
-	private 	int 	  co_programa	;
-	private 	int 	  co_estado	;
-	private 	int 	  co_usuarioregistro	;
-	private 	int 	  co_prioridad	;
-	private 	int 	  co_categoria	;
-	private 	String	  no_programa	;
-	private 	String	  no_estado	;
-	private 	String	  nombre	;
-	private 	String	  no_prioridadl	;
-	private 	String	  no_categoria	;
-
-
-
 	
 }
