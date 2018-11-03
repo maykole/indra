@@ -10,7 +10,8 @@ $(function () {
   /**
    * Get access to plugins
    */
-  var ip="localhost";
+  var iplocal="192.168.43.49";
+  var ip="192.168.43.56:8081";
    var anio="2019";
 	var listadoProcesos=[];
 	 $(document).ready(function() {
@@ -21,7 +22,7 @@ $(function () {
 
 		 $.ajax({
 			 type:"GET",
-			 url: "http://"+ip+":84/Auditoria/initMenu",
+			 url: "http://"+ip+"/initMenu",
 			 dataType: "json",
 			 success: function(xvr){
 				 if(xvr==0){
@@ -58,7 +59,7 @@ $(function () {
 							}
 						},
 		"ajax": {
-				"url": "http://"+ip+":84/Auditoria/planesAnuales",
+				"url": "http://"+ip+"/planesAnuales",
 				"dataSrc": ""
 			  },
 		 "columns": [
@@ -136,7 +137,7 @@ $(function () {
 				listadoProcesos=[];
 				$.ajax({
 				type:"GET",
-				url: "http://"+ip+":84/Auditoria/initPlanAnual/"+anio,
+				url: "http://"+ip+"/initPlanAnual/"+anio,
 				dataType: "json",
 				success: function(xvr){
 					debugger;
@@ -177,7 +178,7 @@ $(function () {
 			var jsontext=JSON.stringify(tempObj);
 			$.ajax({
 					 type:"POST",
-					 url: "http://"+ip+":84/Auditoria/grabarPlanAnual",
+					 url: "http://"+ip+"/grabarPlanAnual",
 					 dataType: "json",
 					 contentType: "application/json; charset=utf-8",
 					 data: jsontext,

@@ -11,18 +11,21 @@ $(function () {
      * Get access to plugins
      */
     var obinicial;
-    var ip="localhost";
+    var iplocal="192.168.43.49";
+  var ip="192.168.43.56:8081";
      var anio="2019";
       var listadoProcesos=[];
        $(document).ready(function() {
   
+        $('#textAsunto').text('');
+        $('#textMotivo').text('');
           var date = new Date();
       
           $('#textFecCre').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
   
            $.ajax({
                type:"GET",
-               url: "http://"+ip+":84/Auditoria/solicitudregistro/init",
+               url: "http://"+ip+"/solicitudregistro/init",
                dataType: "json",
                success: function(xvr){
                 obinicial=xvr;
@@ -38,7 +41,7 @@ $(function () {
                    var codig=JSON.parse(xvr.responseText)
                     if(codig.error.mensaje){
                         alert(codig.error.mensaje);
-                        window.history.back();
+                        window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/listasolicitud.html";
                     }
                }
            })
@@ -55,20 +58,20 @@ $(function () {
               
               var tempObj={
                 "id": 0,
-                "asunto": $('#textAsunto').html(),
+                "asunto": $('#textAsunto').val(),
                 "prioridad": $('#textPrioridad').val(),
                 "estadoid": 0,
                 "estado": $('#textEstado').val(),
                 "fecharegistro": $('#textFecCre').val(),
-                "motivo": $('#textMotivo').html(),
+                "motivo": $('#textMotivo').val(),
                 "proceso": $('#textProceso').val(),
                 "solicitante": $('#textIdSolic').val()               
               }
 
               tempObj = {
                   "periodo":anio,
-                  "motivo":$('#textMotivo').html(),
-                    "asunto": $('#textAsunto').html(),
+                  "motivo":$('#textMotivo').val(),
+                    "asunto": $('#textAsunto').val(),
                     "prioridad": $('#textPrioridad').val(),
                     "proceso": {
                         "procesoId":$('#textProceso').val()
@@ -82,13 +85,13 @@ $(function () {
               var jsontext=JSON.stringify(tempObj);
               $.ajax({
                        type:"POST",
-                       url: "http://"+ip+":84/Auditoria/solicitudregistro",
+                       url: "http://"+ip+"/solicitudregistro",
                        dataType: "json",
                        contentType: "application/json; charset=utf-8",
                        data: jsontext,
                        success: function(xvr){
                         alert('Se registro la Solicitud satisfactoriamente (id: '+xvr.id+').');
-                        location.reload()
+                        window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/listasolicitud.html";
                            
                            
                        },
@@ -101,86 +104,7 @@ $(function () {
   
           })
   
-          function generarPDFO(creadopor,fechacreacion,periodo,anio,programas){
-              var documentDefinition = {
-                  content: [
-                        {
-                        text: 'Plan Anual de Auditoria ' + anio,
-                        style: 'header',
-                        alignment: 'center',
-                        margin: [0, 20]
-                    },
-                    {
-                        alignment: 'justify',
-                        columns: [
-                            {
-                                text: [
-                                    'Periodo: ',
-                                    {text: periodo, bold: true},
-                                    ]
-                            },
-                            {
-                                text: [
-                                    'Fecha de Creación: ',
-                                    {text: fechacreacion, bold: true},
-                                    ]
-                            }
-                        ],
-                        margin: [0, 3]
-                    },
-                    {
-                        alignment: 'justify',
-                        columns: [
-                            {
-                                text: [
-                                    'Generado por: ',
-                                    {text: creadopor, bold: true},
-                                    ]
-                            }
-                        ],
-                        margin: [0, 20]
-                    },
-                    {text: 'Procesos del Plan Anual de Auditoria ' + anio, fontSize: 14, bold: true, margin: [0, 20, 0, 20]},
-                    
-                    {
-                        style: 'tableExample',
-                        table: {
-                            widths: [ 60,  60, '*',  50, '*'],
-                            headerRows: 1,
-                            body: 
-                                
-                                programas
-                            
-                        },
-                        layout: 'lightHorizontalLines'
-                    }
-                ],
-                styles: {
-                    header: {
-                        fontSize: 18,
-                        bold: true
-                    },
-                    bigger: {
-                        fontSize: 15,
-                        italics: true
-                    },
-                    tableHeader: {
-                        bold: true,
-                        fontSize: 12,
-                        color: 'black'
-                    },
-                    tableExample: {
-                      fontSize: 11,
-                    },
-                },
-                defaultStyle: {
-                    columnGap: 20
-                }
-              };
-              
-              pdfMake.createPdf(documentDefinition).download('testdoc.pdf');
-  
-          }
+        
           
       } );
       

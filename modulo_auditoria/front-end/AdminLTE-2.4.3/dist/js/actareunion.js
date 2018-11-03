@@ -10,18 +10,23 @@ $(function () {
     /**
      * Get access to plugins
      */
-    var ip="localhost";
+    var iplocal="192.168.43.49";
+    var ip="192.168.43.56:8081";
      var anio="2019";
       var listadoProcesos=[];
        $(document).ready(function() {
   
           var date = new Date();
       
+          $('#textAsunto').text('');
+            $('#textConclusion').text('');
+            $('#textAcuerdo').text('');
+            $('#textMotivo').text('');
           $('#textFecCre').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
   
            $.ajax({
                type:"GET",
-               url: "http://"+ip+":84/Auditoria/actareunion/init",
+               url: "http://"+ip+"/actareunion/init",
                dataType: "json",
                success: function(xvr){
                    
@@ -40,8 +45,10 @@ $(function () {
                error: function(err){
                 var codig=JSON.parse(err.responseText)
                 if(codig.error.mensaje){
+                    //debugger;
                     alert(codig.error.mensaje);
-                    window.history.back();
+                    window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/index2.html";
+                    //window.history.back();
                 }
                }
            })
@@ -106,8 +113,9 @@ $(function () {
                 "titulo":$('#textAsunto').val(),
                 "descripcion":$('#textMotivo').val(),
                 "lugar":$('#textLugar').val(),
-                "conclusiones":$('#textConclusion').html(),
-                "acuerdos":$('#textAcuerdo').html(),
+                "periodo":anio,
+                "conclusiones":$('#textConclusion').val(),
+                "acuerdos":$('#textAcuerdo').val(),
                 "asistentes": asistenteobj,
                 "procesos": procesoobj
             }
@@ -117,14 +125,15 @@ $(function () {
               var jsontext=JSON.stringify(tempObj);
               $.ajax({
                        type:"POST",
-                       url: "http://"+ip+":84/Auditoria/actareunion",
+                       url: "http://"+ip+"/actareunion",
                        dataType: "json",
+                      
                        contentType: "application/json; charset=utf-8",
                        data: jsontext,
                        success: function(xvr){
                            
                            alert('Se registro el Acta de Reunión satisfactoriamente (id: '+xvr.id+').');
-                           location.reload()
+                           window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/index2.html";
                            
                        },
                        error: function(err){
