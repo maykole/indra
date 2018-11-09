@@ -59,5 +59,5 @@ $(function () {
   })
   function abrirev(id) {
     debugger;
-    window.location.href = "http://"+ip+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/evaluarsolicitud.html?id="+id;
+    window.location.href = "http://192.168.43.49/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/evaluarsolicitud.html?id="+id;
 }

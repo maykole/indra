@@ -14,6 +14,7 @@ $(function () {
   var ip="192.168.43.56:8081";
    var anio="2019";
 	var listadoProcesos=[];
+	var inicial;
 	 $(document).ready(function() {
 
 		var date = new Date();
@@ -22,21 +23,35 @@ $(function () {
 
 		 $.ajax({
 			 type:"GET",
-			 url: "http://"+ip+"/initMenu",
+			 url: "http://"+ip+"/planesAnuales/init",
 			 dataType: "json",
 			 success: function(xvr){
-				 if(xvr==0){
+				//  if(xvr==0){
 						
-						$('#popupGenerar').hide();
-				 }
-				 else if(xvr==1){
+				// 		$('#popupGenerar').hide();
+				//  }
+				//  else if(xvr==1){
+					$('#textPeriodo').val(xvr.periodoCompleto);
+					$('#textGenPor').val('Eduardo Bonilla');
+					inicial=xvr;
+					var opt="";
+						$.each(xvr.procesos,function (index,item) {
+							opt=opt+'<option texto="'+item.procesoId+'" value="'+item.procesoId+'">'+item.nombre+'</option>'
+						})
+						$('#txtProceso').html(opt)
+				$('#popupGenerar').html('Generar a Plan Anual');
+
+				
+				//listadoProcesos.push(objTemp);
+				
+			
+
+
+				//  }
+				//  else if(xvr==2){
 						
-						$('#popupGenerar').html('Generar a Plan Anual');
-				 }
-				 else if(xvr==2){
-						
-						$('#popupGenerar').html('Volver a Generar Plan Anual');
-				 }
+				// 		$('#popupGenerar').html('Volver a Generar Plan Anual');
+				//  }
 			 },
 			 error: function(){
 				 
@@ -164,21 +179,22 @@ $(function () {
 		});
 		
 		$('#btnGenerarF').click(function(){
-			//debugger;
+			debugger;
 			if(listadoProcesos.length==0){
 					alert('Debe seleccionar algún proceso.');
 					return false;
 			}
 			
-			var tempObj={
+			var tempObj={				
 				periodo:anio,
+				actareunion:inicial.actareunion,
 				procesos:listadoProcesos
 			}
 			
 			var jsontext=JSON.stringify(tempObj);
 			$.ajax({
 					 type:"POST",
-					 url: "http://"+ip+"/grabarPlanAnual",
+					 url: "http://"+ip+"/planesAnuales",
 					 dataType: "json",
 					 contentType: "application/json; charset=utf-8",
 					 data: jsontext,
@@ -195,7 +211,8 @@ $(function () {
 								temobj.push([{text: 'Proceso', style: 'tableHeader'}, {text: 'Prioridad', style: 'tableHeader'}, {text: 'Duración', style: 'tableHeader'}, {text: 'Días', style: 'tableHeader'}, {text: 'Auditor', style: 'tableHeader'}]);
 								 $.each(xvr.programas,function(index,item){
 									//cadena2=cadena2+"['"+item.proceso.descripcion+"','"+item.prioridad+"','"+item.proceso.fechaInicio+"-"+item.proceso.fechaFin+"','"+item.duracion+"'],";
-									var objet=[item.proceso.descripcion,item.prioridad,item.fechaInicio+" / "+item.fechaFin,item.duracion.toString(),item.programaAuditores[0].empleado.nombres +" "+ item.programaAuditores[0].empleado.apellidos];
+									//var objet=[item.proceso.descripcion,item.prioridad,item.fechaInicio+" / "+item.fechaFin,item.duracion.toString(),item.programaAuditores[0].empleado.nombres +" "+ item.programaAuditores[0].empleado.apellidos];
+									var objet=[item.proceso.descripcion,item.prioridad,item.fechaInicio+" / "+item.fechaFin,item.duracion.toString(),item.auditor.nombres +" "+ item.auditor.apellidos];
 									temobj.push(objet);
 								 })
 

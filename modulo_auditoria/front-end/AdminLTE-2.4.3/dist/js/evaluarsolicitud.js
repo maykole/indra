@@ -18,7 +18,7 @@ $(function () {
   
           var date = new Date();
           var idid=getUrlParameter('id');
-
+$('#textComentario').text('');
           $('#textfecev').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
   
            $.ajax({
@@ -49,45 +49,32 @@ $(function () {
           
           $('#popupGenerar').click(function(){
               debugger;
-              if($('#textProceso').val().length==0){
-                      alert('Debe seleccionar algún proceso.');
+              if($('#textComentario').val()==''){
+                      alert('Ingrese comentario.');
                       return false;
               }
               
               var tempObj={
-                "id": 0,
-                "asunto": $('#textAsunto').val(),
-                "prioridad": $('#textPrioridad').val(),
-                "estadoid": 0,
-                "estado": $('#textEstado').val(),
-                "fecharegistro": $('#textFecCre').val(),
-                "motivo": $('#textMotivo').val(),
-                "proceso": $('#textProceso').val(),
-                "solicitante": $('#textIdSolic').val()               
+                "estadoid": 2,               
+                
               }
 
-              tempObj = {
-                    "asunto": $('#textAsunto').val(),
-                    "prioridad": $('#textPrioridad').val(),
-                    "proceso": {
-                        "procesoId":$('#textProceso').val()
-                    },
-                    "solicitante":{
-                        "empleadoId": $('#textIdSolic').val()
-                    }
-                }
               
+              var idid=getUrlParameter('id');
+              var urlws="http://"+ip+"/solicitudregistro/evaluar/"+idid;
               var jsontext=JSON.stringify(tempObj);
               $.ajax({
-                       type:"POST",
-                       url: "http://"+ip+"/solicitudregistro",
+                       type:"PUT",
+                       url: urlws,
                        dataType: "json",
                        contentType: "application/json; charset=utf-8",
                        data: jsontext,
                        success: function(xvr){
-                        alert('Se registro la Solicitud satisfactoriamente (id: '+xvr.id+').');
-                        location.reload()
-                           
+                           if(xvr.bevaluar)
+                        {alert('Aprobado');
+                    
+                        window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/listasolicitud.html";
+                       }       
                            
                        },
                        error: function(err){
@@ -99,7 +86,44 @@ $(function () {
   
           })
   
-          
+          $('#btnrechazar').click(function(){
+            debugger;
+            if($('#textComentario').val()==''){
+                    alert('Ingrese comentario.');
+                    return false;
+            }
+            
+            var tempObj={
+              "estadoid": 3,               
+              
+            }
+
+            
+            var idid=getUrlParameter('id');
+            var urlws="http://"+ip+"/solicitudregistro/evaluar/"+idid;
+            var jsontext=JSON.stringify(tempObj);
+            $.ajax({
+                     type:"PUT",
+                     url: urlws,
+                     dataType: "json",
+                     contentType: "application/json; charset=utf-8",
+                     data: jsontext,
+                     success: function(xvr){
+                         if(xvr.bevaluar)
+                      {alert('Rechazado');
+                  
+                      window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/listasolicitud.html";
+                     }       
+                         
+                     },
+                     error: function(err){
+                         alert(err)
+                         
+                     }
+                 })
+            
+
+        })
         
 
         
