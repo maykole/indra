@@ -10,8 +10,8 @@ $(function () {
     /**
      * Get access to plugins
      */
-    var iplocal="192.168.43.49";
-  var ip="192.168.43.56:8081";
+    var iplocal="localhost";
+  var ip="localhost:84/Auditoria";
      var anio="2019";
       var listadoProcesos=[];
        $(document).ready(function() {

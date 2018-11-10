@@ -6,7 +6,7 @@
  */
 $(function () {
   'use strict'
-
+  $('#datetimepicker1').datepicker();
   /**
    * Get access to plugins
    */
@@ -17,6 +17,12 @@ $(function () {
 	var inicial;
 	 $(document).ready(function() {
 
+		$('.btnmodal').on('click',function (params) {
+			console.log($(this));
+			$('#codemodal').modal('show');
+		})
+			
+		
 		var date = new Date();
 	
 		$('#textFecCre').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
@@ -312,8 +318,14 @@ $(function () {
 
 		}
 		
+		
+
 	} );
 	
 	
 	
 })
+
+// modalejecutar = function (params) {
+// 	$('#codemodal').modal('show');
+// }
