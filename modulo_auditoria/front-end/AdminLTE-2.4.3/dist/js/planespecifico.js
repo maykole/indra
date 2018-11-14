@@ -6,15 +6,18 @@
  */
 $(function () {
   'use strict'
-  $('#datetimepicker1').datepicker();
+  
   /**
    * Get access to plugins
    */
   var iplocal="localhost";
-  var ip="localhost:84/Auditoria";
+  var ip="localhost:8081/Auditoria";
    var anio="2019";
 	var listadoProcesos=[];
 	var inicial;
+
+
+	
 	 $(document).ready(function() {
 
 		$('.btnmodal').on('click',function (params) {
@@ -26,10 +29,10 @@ $(function () {
 		var date = new Date();
 	
 		$('#textFecCre').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
-
+debugger;
 		 $.ajax({
 			 type:"GET",
-			 url: "http://"+ip+"/planesAnuales/init",
+			 url: "http://"+ip+"/plananual/2018/planAuditoria",
 			 dataType: "json",
 			 success: function(xvr){
 				//  if(xvr==0){
@@ -37,15 +40,37 @@ $(function () {
 				// 		$('#popupGenerar').hide();
 				//  }
 				//  else if(xvr==1){
-					$('#textPeriodo').val(xvr.periodoCompleto);
-					$('#textGenPor').val('Eduardo Bonilla');
-					inicial=xvr;
+					$('#textAlcance').val(xvr[0].alcance);
+					$('#txtFecIni').val(xvr[0].fechaInicio);
+					$('#txtFechaFin').val(xvr[0].fechaInicio);
+					$('#txtRespo').val('Eduardo Bonilla');
+					$('#textObje').text(xvr[0].objetivo);
+					inicial=xvr[0];
 					var opt="";
-						$.each(xvr.procesos,function (index,item) {
-							opt=opt+'<option texto="'+item.procesoId+'" value="'+item.procesoId+'">'+item.nombre+'</option>'
+						$.each(xvr[0].planprocedimientos,function (index,item) {
+							
+							$.each(item.planactividades,function (index2,item2) {
+								opt=opt+'<tr><td>'+item.descripcion+'</td>';
+								opt=opt+'<td>'+item2.descripcion+'</td><td><div class="input-group date" id="datetimepicker1"><input type="text" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></td>';
+								opt=opt+'<td class="text-center"><input type="checkbox"  value="Ejecución" /></td>';
+								//opt=opt+'<td class="text-center"><input type="button" class="btnmodal btn btn-default"  value="Ejecución" /></td>';
+								opt=opt+'</tr>';
+							})
+							
+							
 						})
-						$('#txtProceso').html(opt)
-				$('#popupGenerar').html('Generar a Plan Anual');
+
+						$('#listaProceso tbody').html(opt);
+
+						
+						$('#datetimepicker1').datepicker();
+
+						$('.btnmodal').on('click',function (params) {
+							console.log($(this));
+							$('#codemodal').modal('show');
+						})
+					
+				//$('#popupGenerar').html('Generar a Plan Anual');
 
 				
 				//listadoProcesos.push(objTemp);
@@ -64,57 +89,7 @@ $(function () {
 			 }
 		 })
 		 
-		$('#example').DataTable({
-			"bLengthChange": false,
-			"language": {	
-							"info": "Total de registros : <b>_MAX_</b>",
-							"infoEmpty": "",
-							"infoFiltered": "",
-							"search": "<span class='c-lista-ped'>Lista de Planificaciones</span><i class='search-icon'></i>",
-							"searchPlaceholder": "Buscar por año....",
-							"paginate": {
-								"first": "<<",
-								"last": ">>",
-								"next": ">",
-								"previous": "<"
-							}
-						},
-		"ajax": {
-				"url": "http://"+ip+"/planesAnuales",
-				"dataSrc": ""
-			  },
-		 "columns": [
-			{ data: "id" },
-            { data: "creadoPor" },
-            { data: "fechaCreacion" },
-            { data: "periodoDescripcion" },
-            { 
-				data: "id",
-				"render": function (data, type, row, meta) {
-                    if (type === 'display') {
-                        data = row.programas.length
-                    }
-                    return data;
-                }			
-			},
-            { 
-				data: "id",
-				"render": function (data, type, row, meta) {
-                    if (type === 'display') {
-                        data = ""
-                    }
-                    return data;
-                }			
-			},
-		 ],
-		 "columnDefs": [            
-            {
-                "targets": -1,
-                "className": "text-center"
-            }
-		]
-		});
-		
+	
 		$('#addProceso').click(function(){
 			if($('#txtProceso').val()==''){
 				alert('Ingrese Proceso');
@@ -329,3 +304,4 @@ $(function () {
 // modalejecutar = function (params) {
 // 	$('#codemodal').modal('show');
 // }
+$('#datetimepicker1').datepicker();
