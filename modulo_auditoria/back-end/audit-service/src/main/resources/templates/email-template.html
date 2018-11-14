@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Template for HTML email with inline image</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<style>
+table.espacio tr td {
+	padding: 5px 10px;
+	font-family: monospace;
+	font-size: 14px;
+}
+
+table.estilo-sub1 thead tr th, table.estilo-sub2 thead tr th {
+	background-color: #565656;
+	color: #fff;
+}
+
+table.estilo-sub1 tbody tr td, table.estilo-sub2 tbody tr td {
+	background-color: #efefef;
+}
+
+table.estilo-sub1 {
+	width: 68%;
+	float: left;
+}
+
+table.estilo-sub2 {
+	width: 28%;
+	float: right;
+}
+</style>
+
+	<div style="width: 500px">
+		<div style="width: 100%; background: gray;">
+			<h1 style="text-align: center">PLAN DE AUDITORIA</h1>
+		</div>
+		<div>
+			<div style="float: left">
+				<label style="width: 200px;">Proceso : </label><label
+					th:text="${planauditoria.proceso.descripcion}">Proceso</label>
+			</div>
+			<div style="float: right">
+				<label>Inicio : </label><label
+					th:text="${planauditoria.fechaInicio}">Inicio</label> <label>Fin
+					: </label><label th:text="${planauditoria.fechaFin}">Fin</label>
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		<!-- <div>
+			<div>
+				<label style="width: 200px;">Descripción : </label><label
+					th:text="${planauditoria.descripcion}">Descripción</label>
+			</div>
+		</div>
+		<div>
+			<div>
+				<label style="width: 200px;">Objetivo : </label><label
+					th:text="${planauditoria.objetivo}">Objetivo</label>
+			</div>
+		</div>
+		<div>
+			<div>
+				<label style="width: 200px;">Alcance : </label><label
+					th:text="${planauditoria.alcance}">Alcance</label>
+			</div>
+		</div>  -->
+		<div>
+			<div style="float: right">
+				<label>Auditor responsable : </label><label
+					th:text="${planauditoria.planauditoriaAuditores[0].empleado.nombres}">Auditor</label>&nbsp;<label
+					th:text="${planauditoria.planauditoriaAuditores[0].empleado.apellidos}">Auditor</label>
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		<br>
+		<fieldset>
+			<legend> Cronograma de reuniones y procedimientos a realizar
+			</legend>
+			<div>
+				<div style="width:60%; float:left" >
+					<table class="estilo-sub1" style="width:100%">
+						<thead>
+							<tr><td style="background-color: #565656; color: #fff" colspan="2"><label th:text="Planificación"></label></td></tr>
+							<tr>
+								<th style="background-color: #565656; color: #fff">Reunión</th>
+								<th style="background-color: #565656; color: #fff">Fecha</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cr : ${planauditoria.cronogramas}">
+								<td th:if="${cr.etapaString} == 'Planificación'" style="padding: 5px 2px;"><label
+									th:text="${cr.indexString}"></label></td>
+								<td th:if="${cr.etapaString} == 'Planificación'" style="padding: 5px 2px;"><label th:text="${cr.fecha}"></label></td>
+							</tr>
+						</tbody>
+					</table><br>
+					<table class="estilo-sub1" style="width:100%">
+						<thead>
+							<tr><td style="background-color: #565656; color: #fff" colspan="2"><label th:text="Ejecución"></label></td></tr>
+							<tr>
+								<th style="background-color: #565656; color: #fff">Reunión</th>
+								<th style="background-color: #565656; color: #fff">Fecha</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cr : ${planauditoria.cronogramas}">
+								<td th:if="${cr.etapaString} == 'Ejecución'" style="padding: 5px 2px;"><label
+									th:text="${cr.indexString}"></label></td>
+								<td th:if="${cr.etapaString} == 'Ejecución'" style="padding: 5px 2px;"><label th:text="${cr.fecha}"></label></td>
+							</tr>
+						</tbody>
+					</table><br>
+					<table class="estilo-sub1" style="width:100%">
+						<thead>
+							<tr><td style="background-color: #565656; color: #fff" colspan="2"><label th:text="Informe"></label></td></tr>
+							<tr>
+								<th style="background-color: #565656; color: #fff">Reunión</th>
+								<th style="background-color: #565656; color: #fff">Fecha</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cr : ${planauditoria.cronogramas}">
+								<td th:if="${cr.etapaString} == 'Informe'" style="padding: 5px 2px;"><label
+									th:text="${cr.indexString}"></label></td>
+								<td th:if="${cr.etapaString} == 'Informe'" style="padding: 5px 2px;"><label th:text="${cr.fecha}"></label></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<table class="estilo-sub2" style="float: right; margin-top:20px">
+					<thead>
+						<tr>
+							<th style="background-color: #565656; color: #fff">Procedimientos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cr : ${planauditoria.procedimientos}">
+							<td style="padding: 5px 5px;"><label
+								th:text="${cr.procedimiento.descripcion}"></label></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+</body>
+</html>
