@@ -50,11 +50,13 @@ debugger;
 						$.each(xvr.planprocedimientos,function (index,item) {
 							
 							$.each(item.planactividades,function (index2,item2) {
+								if(item2.auditar == true){
 								opt=opt+'<tr><td data-id="'+item.planprocedimientoId+'">'+item.descripcion+'</td>';
-								opt=opt+'<td data-idact="'+item2.planactividadId+'">'+item2.descripcion+'</td><td><div class="input-group date datetimepicker1"><input type="text" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></td>';
-								opt=opt+'<td class="text-center"><input type="checkbox"  value="Ejecución" /><input type="hidden" data-idplan="'+item.planprocedimientoId+'"  data-idact="'+item2.planactividadId+'" class="inputhidden" /></td>';
-								//opt=opt+'<td class="text-center"><input type="button" class="btnmodal btn btn-default"  value="Ejecución" /></td>';
+								opt=opt+'<td data-idact="'+item2.planactividadId+'">'+item2.descripcion+'</td><td><div class="input-group date datetimepicker1"><input type="text" disabled value="'+item2.fecha.substring(0,10)+'" class="form-control" /></div></td>';
+								//opt=opt+'<td class="text-center"><input type="checkbox"  value="Ejecución" /><input type="hidden" data-idplan="'+item.planprocedimientoId+'"  data-idact="'+item2.planactividadId+'" class="inputhidden" /></td>';
+								opt=opt+'<td class="text-center"><input type="button" class="btnmodal btn btn-default"  value="Ejecución" /></td>';
 								opt=opt+'</tr>';
+								}
 							})
 							
 							
@@ -62,8 +64,7 @@ debugger;
 
 						$('#listaProceso tbody').html(opt);
 
-						
-						$('.datetimepicker1').datepicker("setDate" , "7/11/2018");
+					
 
 						$('.btnmodal').on('click',function (params) {
 							console.log($(this));
