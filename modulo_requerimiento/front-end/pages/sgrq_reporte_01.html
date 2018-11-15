@@ -1,0 +1,72 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+ <h1>
+  Gestion de Requerimiento
+  <small> </small>
+ </h1>
+ <ol class="breadcrumb">
+  <li><a href="#"><i class="fa fa-th"></i> Home</a></li>
+  <li class="active">Reportes </li>
+ </ol>
+</section>
+ 
+<section class="content">
+ 
+ <div class="row">
+  <div class="col-md-3">
+   <div class="box box-solid">
+    <div class="box-header with-border">
+     <h3 class="box-title"><i class="fa fa-briefcase"></i> Proyectos </h3> <input type="hidden" id="opc_rep" name="opc_rep" value="1"/>
+     <div class="box-tools"> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> </div>
+    </div>
+    <div class="box-body no-padding" style="">
+     <div id='div-prj' class="table-responsive mailbox-messages" style="height: 400px;"> </div> 
+    </div>
+   </div>
+     <!--
+   <div class="box box-solid">
+    <div class="box-header with-border">
+     <h3 class="box-title"><i class="fa fa-filter"></i> Filtros</h3>
+     <div class="box-tools"> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> </div>
+    </div>
+    <div class="box-body no-padding" style="">
+     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#"><i class="fa fa-circle-o text-red"></i> Todos </a></li>
+      <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Completos </a></li>
+      <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Incompletos </a></li>
+     </ul>
+    </div>
+   </div>
+   -->
+  </div>
+  <div class="col-md-9">
+   <div class="box box-success">
+    <div class="box-header with-border">
+     <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> <span id="title">Reporte de Requerimiento - [Estado]</span> </h3>
+     <div class="box-tools"> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> </div>
+    </div>
+    <div class="box-body no-padding" style="">
+     <div class="col-md-12">
+       <div id="div-btn" class="mailbox-controls"> </div> 
+       <div id="div-responsive-tbl" class="table-responsive mailbox-messages">   </div> 
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-md-12">
+       <div id="div-responsive-chart" class="table-responsive mailbox-messages"> </div>
+      </div>
+     </div>
+    </div>
+    <div class="box-footer no-padding">
+
+    </dvi> 
+   </div> 
+  </div>
+ </div> 
+</section>
+<!-- /.content -->
+<script>
+  $(document).ready(function(){
+   configReport(1);
+  });
+</script>

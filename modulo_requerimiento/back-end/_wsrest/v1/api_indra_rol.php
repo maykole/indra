@@ -5,34 +5,26 @@
   //
   class Api extends ApiBase {
    //
-   public function lista() {  
+   public function roles() {  
     if ($_SERVER['REQUEST_METHOD'] != "GET") {  
      $this->showResponse($this->convertJson($this->returnError(1)), 405);  
     } 
     //
-    $sql  = "SELECT id,descripcion FROM ".self::TBL_ROL." t1 GROUP BY id ORDER BY id";
-    $resp = $this->htmlTagOption($sql,"Seleccione Rol","id","descripcion");
-    if(!empty($resp)){
-     $this->showResponse($this->convertJson($resp), 200);
-    }
+    $sql  = "SELECT co_id as id,tx_descripcion as descripcion FROM ".self::TBL_ROL." t1 GROUP BY id ORDER BY id";
+    $this->showResponseQuery($sql);
     //
-    $this->showResponse($this->returnError(2), 204);  
    }
    //
-   public function tipo($id) {  
+   public function actividad($id) {  
     if ($_SERVER['REQUEST_METHOD'] != "GET") {  
      $this->showResponse($this->convertJson($this->returnError(1)), 405);  
     } 
-    //$id   = $this->dataRequest['id'];
     if(!empty($id)){
-     $sql  = "SELECT id_actividad_tipo as id,(select descripcion from ".self::TBL_ACTIVIDAD_TIPO." where id=id_actividad_tipo) as descripcion FROM ".self::TBL_ROL_ACTIVIDAD." t1 where id_rol=$id";
-     $resp = $this->htmlTagOption($sql,"Seleccione Actividad","id","descripcion");
-     if(!empty($resp)){
-      $this->showResponse($this->convertJson($resp), 200);
-     }
+     $sql  = "SELECT co_actividad_tipo as id,(select tx_descripcion from ".self::TBL_ACTIVIDAD_TIPO." where co_id=co_actividad_tipo) as descripcion FROM ".self::TBL_ROL_ACTIVIDAD." t1 where co_rol=$id";
+     $this->showResponseQuery($sql);
     }
     //
-    $this->showResponse($this->returnError(2), 204);  
+    $this->showResponse($this->returnError(0), 404);  
    }
    //
   } 

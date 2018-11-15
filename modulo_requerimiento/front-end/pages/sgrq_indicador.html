@@ -28,7 +28,7 @@
         <div class="col-sm-3 invoice-col">
          <div class="form-group">
           <label>Tipo de Rol</label>
-          <select id='opc_rol' name='opc_rol' class="form-control required" style="width: 100%;" tabindex="-1" onchange="getInfo('opc_actv');" required>
+          <select id='opc_rol' name='opc_rol' class="form-control required" style="width: 100%;" tabindex="-1" onchange="getRoleActivity('opc_actv');" required>
             <option value=''> Seleccione Rol</option>
           </select>
          </div>
@@ -64,7 +64,7 @@
       <div class="row">
        <div class="col-xs-12">
         <button type="button" class="btn btn-success" id="btn-send" title="Generar"><i class="fa fa-bolt"></i> Generar </button> 
-        <button type="button" class="btn btn-default" id="btn-clear" title="Limpiar" onclick="getModule(402);"> <i class='fa fa-eraser'></i> Limpiar </button>
+        <button type="button" class="btn btn-default" id="btn-clear" title="Limpiar" onclick="getModule(405);"> <i class='fa fa-eraser'></i> Limpiar </button>
        </div>
       </div>
       <br/>
@@ -80,15 +80,13 @@
  <!-- /.content -->
 <script>
   $(function () {
-    getInfo('opc_rol');  
-    listCheck('div-ind');
+    getRole('opc_rol')
+    getIndicator('div-ind');
     //
     $('#date').html($.datepicker.formatDate('dd/mm/yy', new Date()));
     frmValidate('frm');
     frmReset('frm');
     btnSend('btn-send','frm');
-    //Date range picker
-    //$('#opc_date').daterangepicker({locale: { format: 'DD/MM/YYYY' }});
     elemDatePicker('opc_date');
   })
 </script>
