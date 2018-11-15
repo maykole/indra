@@ -5,21 +5,27 @@
   //
   class Api extends ApiBase {
    //
-   public function estimacion($id,$dd){
+   public function estimacion(){
     if ($_SERVER['REQUEST_METHOD'] != "GET") {  
      $this->showResponse($this->convertJson($this->returnError(1)), 405);  
     }
     //
-    $actv  = (int) $id;//$this->dataRequest['actv'];
-    $date  = $dd;//$this->dataRequest['days'];
+    if(!isset($this->dataRequest['act'],$this->dataRequest['dd'])){
+     $this->showResponse($this->convertJson($this->returnError(0)), 404);    
+    }
     //
-    $date1 = strtotime(str_replace("/", "-",trim($date)));
-    $date2 = strtotime ("+2 day",$date1);
+    $actv  = (int) $this->dataRequest['act'];
+    $date  = $this->dataRequest['dd'];
     //
-    $date1 = date("Y-m-d",$date1);
-    $date2 = date("Y-m-d",$date2);
+    $date1 = date("Y-m-d", strtotime(str_replace("/", "-",trim($date))));
     //
-    $sql  = "UPDATE ".self::TBL_ACTVIDAD." SET fecha_inicio='$date1',fecha_fin='$date2' WHERE id=$actv";
+    $sql   = "SELECT fn_get_estimation('$date1',t1.co_actividad_tipo,t1.co_complejidad) as fecha FROM ".self::TBL_ACTIVIDAD." t1 where co_id=$actv";
+    $query = $this->pConnect->Query($sql);
+    $data  = $this->pConnect->GetLink();
+    //
+    $date2 = trim($data[0]['fecha']);
+    //
+    $sql  = "UPDATE ".self::TBL_ACTIVIDAD." SET fe_inicio='$date1',fe_fin='$date2' WHERE co_id=$actv";
     $query = $this->pConnect->Query($sql);
     $num   = $this->pConnect->affectedRecords();
     //

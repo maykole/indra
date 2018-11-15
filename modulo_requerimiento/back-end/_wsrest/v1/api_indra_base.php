@@ -5,20 +5,20 @@
   require_once("../../_class/class_rest.php");
   //
   class ApiBase extends Rest {
-   const DB_NAME = "bd_indra";
+   const DB_NAME = "dbindra";
    // 
-   const TBL_ACTIVIDAD      = "sgrq_actividad";
-   const TBL_ACTIVIDAD_TIPO = "sgrq_actividad_tipo";
-   const TBL_CLIENTE        = "sgrq_cliente";
-   const TBL_INDICADOR_TIPO = "sgrq_indicador_tipo";
-   const TBL_EMPLEADO       = "sgrq_empleado";
-   const TBL_PROYECTO       = "sgrq_proyecto";
-   const TBL_REPORTE_TIPO   = "sgrq_reporte_tipo"; 
-   const TBL_REQUERIMIENTO  = "sgrq_requerimiento";
-   const TBL_REQUERIMIENTO_TIPO     = "sgrq_requerimiento_tipo";
-   const TBL_REQUERIMIENTO_DETALLE  = "sgrq_requerimiento_detalle";
-   const TBL_ROL            = "sgrq_rol";
-   const TBL_ROL_ACTIVIDAD  = "sgrq_actividad_rol";
+   const TBL_ACTIVIDAD      = "tbl_actividad";
+   const TBL_ACTIVIDAD_TIPO = "tbl_actividad_tipo";
+   const TBL_CLIENTE        = "tbl_cliente";
+   const TBL_INDICADOR_TIPO = "tbl_indicador_tipo";
+   const TBL_EMPLEADO       = "tbl_empleado";
+   const TBL_PROYECTO       = "tbl_proyecto";
+   const TBL_REPORTE_TIPO   = "tbl_reporte_tipo"; 
+   const TBL_REQUERIMIENTO  = "tbl_requerimiento";
+   const TBL_REQUERIMIENTO_TIPO     = "tbl_requerimiento_tipo";
+   const TBL_REQUERIMIENTO_DETALLE  = "tbl_requerimiento_detalle";
+   const TBL_ROL            = "tbl_rol";
+   const TBL_ROL_ACTIVIDAD  = "tbl_actividad_rol";
    
    //
    const msg_box = "<div class='alert alert-info alert-dismissible callout callout-info'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button><h4><i class='icon fa fa-info'></i> ATENCION </h4><p> Consulta sin Informacion. </p></div>";

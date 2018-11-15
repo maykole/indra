@@ -2,6 +2,15 @@ var IconMsj  = "<b class='dark-gray'> <span class='fa-stack fa-lg'> <i class='fa
 var IconInfo = "<b class='dark-gray'> <span class='fa-stack fa-lg'> <i class='fa fa-square-o fa-stack-2x'></i> <i class='fa fa-info fa-stack-1x'></i> </span> ATENCIÓN </b>";
 var Iconload = ["<i class='fa fa-spinner fa-spin'></i>","<i class='fa fa-spinner fa-3x fa-spin'></i>","<i class='fa fa-circle-o-notch fa-3x fa-spin'></i>","<img src='dist/img/loader.gif'>"];
 //
+function alertJson(jqXHR){
+ if(jqXHR){
+  //var resp = JSON.parse(jqXHR.responseText);
+  //msg = resp['msg'];
+  var msg = 'Código: '+jqXHR.status+'</br> Descripción: '+jqXHR.statusText; 
+  alertWindow(msg);   
+ } 
+}
+
 function alertWindow(str){
  bootbox.alert(IconMsj + " <br/> <span class='dark-gray'>"+str+"</span>", function(result) {
 
@@ -17,11 +26,16 @@ function getModule(id){
   //
   case 300: html = 'pages/portafolio.html';break;
   //
-  case 401: html = 'pages/sgrq_estimar.html'; break;
-  case 402: html = 'pages/sgrq_indicador.html'; break;
-  case 403: html = 'pages/sgrq_gestionados.html'; break;
-  case 404: html = 'pages/sgrq_reporte.html'; break;
-  case 405: html = 'pages/sgrq_.html'; break;
+  case 401: html = 'pages/sgrq_registrar.html'; break;
+  case 402: html = 'pages/sgrq_actividad.html'; break;
+  case 403: html = 'pages/sgrq_recurso.html'; break;
+  case 404: html = 'pages/sgrq_estimar.html'; break;
+  case 405: html = 'pages/sgrq_indicador.html'; break;
+  //case 406: html = 'pages/sgrq_gestionados.html'; break;
+  //case 407: html = 'pages/sgrq_reporte.html'; break;
+  case 406: html = 'pages/sgrq_reporte_01.html'; break;
+  case 407: html = 'pages/sgrq_reporte_02.html'; break;
+  case 408: html = 'pages/sgrq_reporte_03.html'; break;
   //
   case 500: html = 'pages/riesgo.html'; break;           
   default: html = ''; break;  

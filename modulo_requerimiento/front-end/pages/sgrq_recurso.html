@@ -1,0 +1,111 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+ <h1>
+  Gestion de Requerimiento
+  <small> </small>
+ </h1>
+ <ol class="breadcrumb">
+  <li><a href="#"><i class="fa fa-th"></i> Home</a></li>
+  <li class="active">Recurso </li>
+ </ol>
+</section>
+ 
+<section class="content">
+ 
+ <div class="row">
+  <div class="col-md-3">
+   <div class="box box-solid">
+    <div class="box-header with-border">
+     <h3 class="box-title"><i class="fa fa-file-text-o"></i> Datos </h3> <input type="hidden" id="opc_rep" name="opc_rep" value="3"/>
+     <div class="box-tools"> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> </div>
+    </div>
+    <div class="box-body" style="">
+     <form name='frm-6' id='frm-6' method='post' onsubmit='' action=''> 
+     <ul class="nav nav-pills nav-stacked">
+      <li>
+       <div class="form-group">
+        <label>Proyecto</label>
+        <select id='act_prj' name='act_prj' class="form-control required" onchange="getProjectRqCbo();" style="width: 100%;" tabindex="-1" required>
+         <option value=''> Seleccione proyecto</option>
+        </select>
+       </div>
+      </li>
+      <li>
+       <div class="form-group">
+        <label class"form-control">Requerimiento</label> <input type="hidden" id="act_fil" name="act_fil" value="2">
+        <select id='act_rq' name='act_rq' class="form-control required" onclick="getRqActivityCbo();" style="width: 100%;" tabindex="-1" size="6" required>
+         <option value=''> Seleccione Requerimiento</option>
+        </select>
+       </div>
+      </li>
+      <!--
+      <li>
+       <div class="form-group">
+        <label class"form-control">Actividad</label>
+        <input type="text" id="rcs_desc" name="rcs_desc" class="form-control" placeholder="Descripción" required disabled>
+       </div>
+      </li>
+      <li>
+      -->
+       <div class="form-group">
+        <label class"form-control">Tipo de Actividad</label>
+        <select id='rcs_type' name='rcs_type' class="form-control required" onchange="getPersonal('rcs_pers');" style="width: 100%;" tabindex="-1" required disabled>
+         <option value=''> Seleccione tipo</option>
+        </select>
+       </div>
+      </li>
+      <li>
+       <div class="form-group">
+        <label class"form-control">Personal</label>
+        <select id='rcs_pers' name='rcs_pers' class="form-control required" style="width: 100%;" tabindex="-1" size="6" required disabled>
+         <option value=''> Seleccione Personal</option>
+        </select>
+       </div>
+      </li>
+     </ul> 
+     <div class="box-footer">
+      <button type="button" id="btn-sv" name="btn-sv" class="btn btn-default" title="Guardar" onclick="" disabled=""> <i class="fa fa-floppy-o"></i> </button>
+	     <button type="button" name="" class="btn btn-default" title="Agregar" onclick="enableElem(0,3);"> <i class="fa fa-plus"></i>  </button> 
+	     <button type="button" name="" class="btn btn-default" title="Cancelar" onclick="enableElem(1,3);"> <i class="fa fa-ban"></i> </button>
+      <button type="button" name="" class="btn btn-default" title="Actualizar" onclick="getModule(403);"> <i class="fa fa-refresh"></i> </button> 
+     </div>
+     </form>
+    </div>
+   </div>
+
+  </div>
+  
+  <div class="col-md-9">
+   <div class="box box-success">
+    <div class="box-header with-border">
+     <h3 class="box-title"><i class="fa fa-tasks"></i> <span id="title"> Asignación de Actividades <span> </h3>
+     <div class="box-tools"> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> </div>
+    </div>
+    <div class="box-body no-padding" style="">
+     <div class="row">
+      <div class="col-md-12">
+       <div id="div-btn" class="mailbox-controls"> </div> 
+       <div id="div-responsive-tbl" class="table-responsive mailbox-messages">   </div> 
+      </div>
+     </div>
+    </div>
+    <div class="box-footer no-padding">
+     
+    </div>
+    </dvi> 
+   </div> 
+  </div>
+ </div> 
+</section>
+<!-- /.content -->
+<script>
+ $(document).ready(function(){
+  frmValidate('frm-6');
+  getProject('act_prj',2);
+  getRqActivityType('rcs_type');
+  $('#datepicker').datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
+  //
+ });
+ //
+</script>
+

@@ -27,6 +27,17 @@
     $this->showResponse($this->returnError(0), 404);  
    }
    //
+   public function personal($id) {  
+    if ($_SERVER['REQUEST_METHOD'] != "GET") {  
+     $this->showResponse($this->convertJson($this->returnError(1)), 405);  
+    } 
+    if(!empty($id)){
+     $sql  = "SELECT t1.co_id as id,concat(no_nombres,' ',no_apellidos) as Personal FROM ".self::TBL_EMPLEADO." t1 inner join ".self::TBL_ROL_ACTIVIDAD." t2 on t1.co_rol=t2.co_rol WHERE co_actividad_tipo=$id";
+     $this->showResponseQuery($sql);
+    }
+    //
+    $this->showResponse($this->returnError(0), 404);  
+   }
   } 
   // 
   $api = new Api();  

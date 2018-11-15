@@ -1,0 +1,101 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+ <h1>
+  Gestion de Requerimiento
+  <small> </small>
+ </h1>
+ <ol class="breadcrumb">
+  <li><a href="#"><i class="fa fa-th"></i> Home</a></li>
+  <li class="active">Reportes </li>
+ </ol>
+</section>
+ 
+<section class="content">
+ 
+ <div class="row">
+  <div class="col-md-3">
+   <div class="box box-solid">
+    <div class="box-header with-border">
+     <h3 class="box-title"><i class="fa fa-filter"></i> Filtros </h3> <input type="hidden" id="opc_rep" name="opc_rep" value="3"/>
+     <div class="box-tools"> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> </div>
+    </div>
+    <div class="box-body" style="">
+     <form name='frm-3' id='frm-3' method='post' onsubmit='' action=''> 
+     <ul class="nav nav-pills nav-stacked">
+      <li>
+       <div class="form-group">
+        <label>Tipo de Rol</label>
+        <select id='opc_rol' name='opc_rol' class="form-control required" style="width: 100%;" tabindex="-1" required>
+         <option value=''> Seleccione Rol</option>
+        </select>
+       </div>
+      </li>
+      <li>
+       <div class="form-group">
+        <label>Rango de fechas</label>
+        <div class="input-group">
+         <div class="input-group-addon">  <i class="fa fa-calendar"></i> </div>
+         <input class="form-control pull-right" id="opc_date"  name="opc_date" type="text" />
+        </div>
+       </div>
+      </li>
+     </ul> 
+     <div class="box-footer">
+      <button type="button" class="btn btn-success" id="btn-send" title="Buscar"><i class="fa fa-search"></i> Buscar </button> 
+       <button type="button" class="btn btn-default" id="btn-clear" title="Limpiar" onclick="getModule(408);"> <i class='fa fa-eraser'></i> Limpiar </button>
+     </div>
+     </form>
+    </div>
+   </div>
+   <!--
+   <div class="box box-solid">
+    <div class="box-header with-border">
+     <h3 class="box-title"><i class="fa fa-list"></i> Resultado de busqueda</h3>
+     <div class="box-tools"> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> </div>
+    </div>
+    <div class="box-body no-padding" style="">
+     <div id='div-responsive' class="table-responsive mailbox-messages">  
+      <table class="table table-hover table-striped"> </table>
+     </div>   
+    </div>
+   </div>
+   -->
+  </div>
+  
+  <div class="col-md-9">
+   <div class="box box-success">
+    <div class="box-header with-border">
+     <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> <span id="title">Reporte de Requerimiento - [Personal]<span> </h3>
+     <div class="box-tools"> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> </div>
+    </div>
+    <div class="box-body no-padding" style="">
+     <div class="row">
+      <div class="col-md-12">
+       <div id="div-btn" class="mailbox-controls"> </div> 
+       <div id="div-responsive-tbl" class="table-responsive mailbox-messages">   </div> 
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-md-12">
+       <div id="div-responsive-chart" class="table-responsive mailbox-messages"> </div>
+      </div>
+     </div>
+    </div>
+    <div class="box-footer no-padding">
+     
+    </div>
+    </dvi> 
+   </div> 
+  </div>
+ </div> 
+</section>
+<!-- /.content -->
+<script>
+ $(document).ready(function(){
+  configReport(3);
+  $('#datepicker').datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
+  //
+ });
+ //
+</script>
+
