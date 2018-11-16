@@ -10,8 +10,8 @@ $(function () {
     /**
      * Get access to plugins
      */
-    var iplocal="localhost";
-  var ip="localhost:84/Auditoria";
+    var iplocal="ec2-18-223-99-234.us-east-2.compute.amazonaws.com";
+  var ip="ec2-18-223-99-234.us-east-2.compute.amazonaws.com:84/Auditoria";
      var anio="2019";
       var listadoProcesos=[];
        $(document).ready(function() {
@@ -59,5 +59,5 @@ $(function () {
   })
   function abrirev(id) {
     debugger;
-    window.location.href = "http://localhost/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/evaluarsolicitud.html?id="+id;
+    window.location.href = "http://ec2-18-223-99-234.us-east-2.compute.amazonaws.com/indra/AdminLTE-2.4.3/evaluarsolicitud.html?id="+id;
 }

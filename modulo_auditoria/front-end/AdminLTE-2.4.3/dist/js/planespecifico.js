@@ -10,8 +10,8 @@ $(function () {
   /**
    * Get access to plugins
    */
-  var iplocal="localhost";
-  var ip="localhost:8081/Auditoria";
+  var iplocal="ec2-18-223-99-234.us-east-2.compute.amazonaws.com";
+  var ip="ec2-18-223-99-234.us-east-2.compute.amazonaws.com:8081/Auditoria";
    var anio="2019";
 	var listadoProcesos=[];
 	var inicial;
@@ -25,14 +25,14 @@ var objinicial;
 			$('#codemodal').modal('show');
 		})
 			
-		
+		var idproceso = getUrlParameter('id');
 		var date = new Date();
 	
 		$('#textFecCre').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 
 debugger;
 		 $.ajax({
 			 type:"GET",
-			 url: "http://"+ip+"/planAuditoria/1",
+			 url: "http://"+ip+"/planAuditoria/"+idproceso,
 			 dataType: "json",
 			 success: function(xvr){
 				//  if(xvr==0){
@@ -40,6 +40,7 @@ debugger;
 				// 		$('#popupGenerar').hide();
 				//  }
 				//  else if(xvr==1){
+					$('#procesoid').html(xvr.descripcion);
 					$('#textAlcance').val(xvr.alcance);
 					$('#txtFecIni').val(xvr.fechaInicio);
 					$('#txtFechaFin').val(xvr.fechaInicio);
@@ -352,7 +353,20 @@ debugger;
 
 	} );
 	
-	
+	var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+    
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+    
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
 	
 })
 

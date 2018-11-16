@@ -52,10 +52,11 @@ debugger;
 							
 							$.each(item.planactividades,function (index2,item2) {
 								if(item2.auditar == true){
+									var verdadero=item2.auditado==true?"SI":"NO";
 								opt=opt+'<tr><td data-id="'+item.planprocedimientoId+'">'+item.descripcion+'</td>';
 								opt=opt+'<td data-idact="'+item2.planactividadId+'">'+item2.descripcion+'</td><td><div class="input-group date datetimepicker1"><input type="text" disabled value="'+item2.fecha.substring(0,10)+'" class="form-control" /></div></td>';
 								//opt=opt+'<td class="text-center"><input type="checkbox"  value="Ejecución" /><input type="hidden" data-idplan="'+item.planprocedimientoId+'"  data-idact="'+item2.planactividadId+'" class="inputhidden" /></td>';
-								opt=opt+'<td class="text-center"><input type="button" class="btnmodal btn btn-default"  value="Ejecución" /><input type="hidden" data-idplan="'+item.planprocedimientoId+'"  data-idact="'+item2.planactividadId+'" class="inputhidden" /></td>';
+								opt=opt+'<td class="text-center"><span>'+verdadero+'</span><input type="hidden" data-idplan="'+item.planprocedimientoId+'"  data-idact="'+item2.planactividadId+'" class="inputhidden" /></td>';
 								opt=opt+'</tr>';
 								}
 							})
@@ -104,22 +105,22 @@ debugger;
 		 })
 		 
 	var objtempo=[];
-		 $('#btnGenerarF').click(function () {
-			if($("input:radio[name ='opt']:checked").val() == undefined){
+		 $('#idGrabar').click(function () {
+			if($("input:radio[name ='optFin']:checked").val() == undefined){
 				alert('Debe marcar SI/NO cumplió!');
 				return false;
 			}
 
 			var objenviar = {
-				"planactividadId": objActividadSt.planactividadId,
-				"auditado": $("input:radio[name ='opt']:checked").val(),
-				"observacion": $('#textObsMod').val()
+				"id": inicial.id,
+				"resultado": $("input:radio[name ='optFin']:checked").val(),
+				"observacion": $('#textObsFin').val()
 			}
 
 			var jsontext=JSON.stringify(objenviar);
 			$.ajax({
 				type:"PUT",
-				url: "http://"+ip+"/planAuditoria/1/planActividad/"+objActividadSt.planactividadId,
+				url: "http://"+ip+"/planAuditoria/"+inicial.id+"/concluir",
 				dataType: "json",
 				contentType: "application/json; charset=utf-8",
 				data: jsontext,

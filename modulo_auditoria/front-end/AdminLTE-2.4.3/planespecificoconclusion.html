@@ -200,12 +200,13 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header text-center">
-      <h2>ACTUALIZAR PLAN DE AUDITORIA</h2>
+      <h2>REGISTRAR CONCLUSIONES DE AUDITORIA</h2>
     </section>
     <section class="content-header text-center">
         <h3 id="procesoid"></h3>
       </section>
     <br>
+    
     <!-- Main content -->
     <section class="content">
   
@@ -270,10 +271,10 @@
           <table id="listaProceso" class="display table table-striped table-bordered" style="width:100%">
             <thead>
               <tr>
-                <th style="width: 20%;">Proceso</th>
+                <th style="width: 20%;">Procedimiento</th>
                 <th style="width: 20%;">Actividad</th>
                 <th style="width: 20%;">Fecha</th>
-                <th style="width: 20%;">Seleccionar</th>
+                <th style="width: 20%;">Auditado</th>
                 
               </tr>
             </thead>
@@ -293,7 +294,29 @@
           </div>
             </form>
 
-		<br />
+    <br />
+    <div class="row row-spacing">
+        <div class="col-sm-6">
+            <div class="col-sm-4">
+              <label>Cumplido: </label>
+              </div>
+              <div class="col-sm-8">
+                  <input type="radio" value="true" name="optFin"> SI  &nbsp;&nbsp;&nbsp;
+                  <input type="radio" value="false" name="optFin"> NO
+              </div>
+          </div>
+      <div class="col-sm-6">
+        <div class="col-sm-4">
+        <label>Observaciones: </label>
+        </div>
+        <div class="col-sm-8">
+          <textarea class="form-control" rows="5" id="textObsFin" ></textarea>
+        </div>
+      </div>
+      
+      
+    </div>
+    <br />
 		<div class="row">
 			<span class="generar" ></span><button  id="idGrabar" style="padding: 10px;" class="btn btn-success" >Grabar</button>
 		</div>
@@ -441,6 +464,6 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/planespecificoejecutar.js"></script>
+<script src="dist/js/planespecificoconclusion.js"></script>
 </body>
 </html>
