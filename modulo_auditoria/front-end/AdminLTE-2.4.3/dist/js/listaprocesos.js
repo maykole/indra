@@ -29,7 +29,16 @@ $(function () {
                   
                    var tdtd="";
                   $.each(xvr,function (index,item) {
-                    tdtd= tdtd + '<tr><td>' + item.alcance + '</td><td>' + item.descripcion + '</td><td>' + item.fechaCreacion + '</td><td><input type="button" onclick="abrirev('+item.id+');" value="Actualizar" />&nbsp;&nbsp;&nbsp;<input type="button" onclick="abrirev2('+item.id+');" value="Ejecutar" />&nbsp;&nbsp;&nbsp;<input type="button" onclick="abrirev3('+item.id+');" value="Concluir" />&nbsp;&nbsp;&nbsp;<input type="button" onclick="abrirev4('+item.id+');" value="Eliminar" /></td></tr>';
+                    tdtd= tdtd + '<tr><td>' + item.alcance + '</td><td>' + item.descripcion + '</td><td>' + item.estado + '</td><td>' + item.fechaCreacion + '</td><td>';
+					if(item.estado == 'Pendiente')
+								{ 
+									tdtd= tdtd + '<input type="button" onclick="abrirev('+item.id+');" value="Iniciar" />&nbsp;&nbsp;&nbsp;';
+								}else if(item.estado == 'Iniciado'){									
+									tdtd= tdtd + '<input type="button" onclick="abrirev2('+item.id+');" value="Ejecutar" />&nbsp;&nbsp;&nbsp;';
+																
+									tdtd= tdtd + '<input type="button" onclick="abrirev3('+item.id+');" value="Concluir" />&nbsp;&nbsp;&nbsp;';
+								}
+					tdtd= tdtd + '<input type="button" onclick="abrirev4('+item.id+');" value="Eliminar" /></td></tr>';
                   })
                   tdtd=tdtd+"";
                   $('#listasolicitud tbody').html(tdtd);
@@ -44,7 +53,7 @@ $(function () {
           
           $('#popupGenerar').click(function(){
               debugger;
-              window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/registrosolicitud.html";
+              window.location.href = "http://"+iplocal+"/indra/AdminLTE-2.4.3/registrosolicitud.html";
             
               
   
@@ -58,22 +67,22 @@ $(function () {
       
   })
 
-  var iplocal="localhost";
-  var ip="localhost:8081/Auditoria";
+  var iplocal="ec2-18-223-99-234.us-east-2.compute.amazonaws.com";
+    var ip="ec2-18-223-99-234.us-east-2.compute.amazonaws.com:8081/Auditoria";
 
   function abrirev(id) {
     debugger;
-    window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/planespecifico.html?id="+id;
+    window.location.href = "http://"+iplocal+"/indra/AdminLTE-2.4.3/planespecifico.html?id="+id;
 }
 
 function abrirev2(id) {
     debugger;
-    window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/planespecificoejecutar.html?id="+id;
+    window.location.href = "http://"+iplocal+"/indra/AdminLTE-2.4.3/planespecificoejecutar.html?id="+id;
 }
 
 function abrirev3(id) {
     debugger;
-    window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/planespecificoconclusion.html?id="+id;
+    window.location.href = "http://"+iplocal+"/indra/AdminLTE-2.4.3/planespecificoconclusion.html?id="+id;
 }
 
 function abrirev4(id) {

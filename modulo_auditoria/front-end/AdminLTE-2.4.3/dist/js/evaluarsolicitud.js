@@ -11,7 +11,7 @@ $(function () {
      * Get access to plugins
      */
     var iplocal="ec2-18-223-99-234.us-east-2.compute.amazonaws.com";
-  var ip="ec2-18-223-99-234.us-east-2.compute.amazonaws.com:84/Auditoria";
+  var ip="ec2-18-223-99-234.us-east-2.compute.amazonaws.com:8081/Auditoria";
      var anio="2019";
       var listadoProcesos=[];
        $(document).ready(function() {
@@ -73,7 +73,7 @@ $('#textComentario').text('');
                            if(xvr.bevaluar)
                         {alert('Aprobado');
                     
-                        window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/listasolicitud.html";
+                        window.location.href = "http://"+iplocal+"/indra/AdminLTE-2.4.3/listasolicitud.html";
                        }       
                            
                        },
@@ -112,7 +112,7 @@ $('#textComentario').text('');
                          if(xvr.bevaluar)
                       {alert('Rechazado');
                   
-                      window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/listasolicitud.html";
+                      window.location.href = "http://"+iplocal+"/indra/listasolicitud.html";
                      }       
                          
                      },

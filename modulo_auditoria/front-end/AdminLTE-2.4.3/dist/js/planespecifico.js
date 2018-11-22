@@ -54,6 +54,7 @@ debugger;
 								opt=opt+'<tr><td data-id="'+item.planprocedimientoId+'">'+item.descripcion+'</td>';
 								opt=opt+'<td data-idact="'+item2.planactividadId+'">'+item2.descripcion+'</td><td><div class="input-group date datetimepicker1"><input type="text" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></td>';
 								opt=opt+'<td class="text-center"><input type="checkbox"  value="Ejecución" /><input type="hidden" data-idplan="'+item.planprocedimientoId+'"  data-idact="'+item2.planactividadId+'" class="inputhidden" /></td>';
+								
 								//opt=opt+'<td class="text-center"><input type="button" class="btnmodal btn btn-default"  value="Ejecución" /></td>';
 								opt=opt+'</tr>';
 							})
@@ -108,6 +109,8 @@ debugger;
 					
 						$.each(item2.planactividades,function (index3,item3) {
 							if(item3.planactividadId == idact){
+								item3.auditar = true;
+								item3.fecha = '20181110';
 								objts.planactividades.push(item3)
 							}
 						})
@@ -117,16 +120,16 @@ debugger;
 			 })
 			 console.log(objtempo)
 			 objtempo={
-				"id": inicial.proceso.id,
-				"alcance":inicial.proceso.alcance,
-				"objetivo":inicial.proceso.objetivo,
+				"id": inicial.id,
+				"alcance":inicial.alcance,
+				"objetivo":inicial.objetivo,
 				"planprocedimientos":[objts]
 			}
 
 			var jsontext=JSON.stringify(objtempo);
 			$.ajax({
 				type:"PUT",
-				url: "http://"+ip+"/planAuditoria/1/iniciar",
+				url: "http://"+ip+"/planAuditoria/"+inicial.id+"/iniciar",
 				dataType: "json",
 				contentType: "application/json; charset=utf-8",
 				data: jsontext,

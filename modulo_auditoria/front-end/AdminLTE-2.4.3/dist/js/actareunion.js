@@ -11,7 +11,7 @@ $(function () {
      * Get access to plugins
      */
     var iplocal="ec2-18-223-99-234.us-east-2.compute.amazonaws.com";
-    var ip="ec2-18-223-99-234.us-east-2.compute.amazonaws.com:84/Auditoria";
+    var ip="ec2-18-223-99-234.us-east-2.compute.amazonaws.com:8081/Auditoria";
      var anio="2019";
       var listadoProcesos=[];
        $(document).ready(function() {
@@ -47,7 +47,7 @@ $(function () {
                 if(codig.error.mensaje){
                     //debugger;
                     alert(codig.error.mensaje);
-                    window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/index2.html";
+                    window.location.href = "http://"+iplocal+"/indra/AdminLTE-2.4.3/index2.html";
                     //window.history.back();
                 }
                }
@@ -133,7 +133,7 @@ $(function () {
                        success: function(xvr){
                            
                            alert('Se registro el Acta de Reunión satisfactoriamente (id: '+xvr.id+').');
-                           window.location.href = "http://"+iplocal+"/tp3indra/modulo_auditoria/front-end/AdminLTE-2.4.3/index2.html";
+                           window.location.href = "http://"+iplocal+"/indra/AdminLTE-2.4.3/index2.html";
                            
                        },
                        error: function(err){
