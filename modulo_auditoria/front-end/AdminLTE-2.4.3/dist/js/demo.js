@@ -147,6 +147,7 @@ $(function () {
 		})
 		
 		$('#popupGenerar').click(function(){
+			debugger;
 				$('#code').modal('show');
 				$('#listaProceso tbody').html('');
 				listadoProcesos=[];
@@ -161,6 +162,19 @@ $(function () {
 						$('#textFecCre').val(xvr.fechaCreacion);
 						$('#textGenPor').val(xvr.creadoPor);
 						if(xvr.procesos.length>0){
+							var std = "";
+							$('#listaProceso tbody').html('');
+							var cadena="";
+							$.each(xvr.procesos,function(index, item){
+								cadena=cadena+"<tr>";
+								cadena=cadena+'<td id-proceso="'+item.procesoId+'">'+item.nombre+'</td>';
+								cadena=cadena+'<td><select type="text" id="txtPrioridad" class="form-control" ><option>Alta</option><option>Media</option>	<option>Baja</option></select></td>';
+								cadena=cadena+'<td><input type="number" id="txtDuracion" min="10" max="100" step="1" value="30" class="form-control" ></td>';
+								cadena=cadena+'<td class="text-center"></td>';
+								cadena=cadena+"</tr>";
+							})			 
+							$('#listaProceso tbody').html(cadena)
+
 							var cadena="";
 							$.each(xvr.procesos,function(index, item){
 								cadena=cadena+'<option texto="'+item.procesoId+'" value="'+item.procesoId+'">'+item.nombre+'</option>';
@@ -180,6 +194,21 @@ $(function () {
 		
 		$('#btnGenerarF').click(function(){
 			debugger;
+			$.each($('#listaProceso tbody tr'),function (index,item) {
+				debugger;
+				var td = $($(item)[0]).html();
+
+				var objTemp={
+					procesoId: $(item).children()[0].getAttribute('id-proceso'),
+					nombred: $(item).children()[0].innerHTML,
+					seleccionado: true,
+					prioridad: $($(item).children()[1]).find('#txtPrioridad').val(),
+					duracion: $($(item).children()[2]).find('input').val()
+				}
+				
+				listadoProcesos.push(objTemp);
+			})
+
 			if(listadoProcesos.length==0){
 					alert('Debe seleccionar algún proceso.');
 					return false;

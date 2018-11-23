@@ -15,7 +15,7 @@ $(function () {
      var anio="2019";
       var listadoProcesos=[];
        $(document).ready(function() {
-  
+            debugger;
           var date = new Date();
       
           $('#textFecCre').val( date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear()) 

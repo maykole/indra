@@ -96,6 +96,11 @@ debugger;
 			 var listadotd = $('#listaProceso tbody tr').find('input[type=checkbox]:checked').parent();
 			 objtempo=[];
 
+			if(listadotd.length == 0 ){
+				alert('Se debe seleccionar por lo menos una actividad!');
+				return false;
+			}
+
 			 var objts={
 							
 				"planactividades": []
@@ -136,7 +141,7 @@ debugger;
 				success: function(xvr){
 					debugger;
 					if(xvr==1){
-						alert('Se actualizo!')
+						alert('Plan de Auditoría actualizado correctamente!')
 					}
 					
 				},
@@ -225,6 +230,8 @@ debugger;
 					return false;
 			}
 			
+			
+
 			var tempObj={				
 				periodo:anio,
 				actareunion:inicial.actareunion,
